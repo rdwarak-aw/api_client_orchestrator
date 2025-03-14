@@ -6,17 +6,17 @@ The API Client Orchestrator is responsible for managing multiple API clients, en
 ---
 
 ## Project Structure
-'''
+
 project-root/
-�-- runner.py   # Manages and spawns API clients
-�-- client.py         # Individual API client making requests
+�-- runner.py		# Manages and spawns API clients
+�-- client.py		# Individual API client making requests
 �-- utils/
-�   +-- logger.py     # Logging utility
-�   +-- config_loader.py # Loads configuration from config.json
-�   +-- token_manager.py # Handles authentication tokens
-�-- config.json       # Configuration file for clients and orchestrator
-�-- README.md         # Documentation
-'''
+�   +-- logger.py	# Logging utility
+�   +-- config_loader.py# Loads configuration from config.json
+�   +-- token_manager.py# Handles authentication tokens
+�-- config.json		# Configuration file for clients and orchestrator
+�-- README.md		# Documentation
+
 
 ---
 
@@ -43,26 +43,55 @@ The 'config.json' file holds configuration details for the orchestrator and clie
 
 '''json
 {
-  "max_runtime": 3600,
+  "log_to_console": true,
   "use_token_manager": true,
+  "max_runtime": 60, 
   "auth": {
-    "token_url": "https://auth.example.com/token",
-    "client_id": "your_client_id",
-    "client_secret": "your_client_secret"
+    "url": "xxxx",
+    "credentials": {
+        "username": "xxx",
+        "password": "xxxx"
+    }
   },
   "clients": {
-    "client_A": {
-      "url": "https://api.example.com/data",
-      "interval": 30,
-      "method": "GET"
+    "ActressClient": {
+      "disabled":false,
+      "use_token_manager": true,
+      "url": "https://freetestapi.com/api/v1/actresses/1",
+      "method": "GET",
+      "interval": 10,
+      "headers": {
+        "Content-Type": "application/json"
+      }
     },
-    "client_B": {
-      "url": "https://api.example.com/upload",
-      "interval": 60,
-      "method": "POST"
-    }
+    "DestinationClient": {
+      "disabled":false,
+      "use_token_manager": true,
+      "url": "https://freetestapi.com/api/v1/destinations/1",
+      "method": "GET",
+      "interval": 20,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "PostClient": {
+            "disabled":false,
+            "use_token_manager": true,
+            "url": "https://jsonplaceholder.typicode.com/posts",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "payload": {
+                "title": "foo",
+                "body": "bar",
+                "userId": 1
+            },
+            "interval": 15
+        }
   }
 }
+
 '''
 
 - **max_runtime**: Global timeout (in seconds) for all clients.
@@ -116,5 +145,3 @@ WARNING - [client_B] API returned error 404: Not Found
 
 ---
 
-## Contributors
-- GPT-4-turbo with Instructions from CMR+ Product Team
