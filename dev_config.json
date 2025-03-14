@@ -1,0 +1,49 @@
+{
+  "log_to_console": true,
+  "use_token_manager": true,
+  "max_runtime": 60, 
+  "auth": {
+    "url": "https://chnr6dev01.ant.works:2004/api/AuthController/token",
+    "credentials": {
+        "username": "adminantworks",
+        "password": "Password@123@"
+    }
+  },
+  "clients": {
+    "ActressClient": {
+      "disabled":false,
+      "use_token_manager": true,
+      "url": "https://freetestapi.com/api/v1/actresses/1",
+      "method": "GET",
+      "interval": 10,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "DestinationClient": {
+      "disabled":false,
+      "use_token_manager": true,
+      "url": "https://freetestapi.com/api/v1/destinations/1",
+      "method": "GET",
+      "interval": 20,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "PostClient": {
+            "disabled":false,
+            "use_token_manager": true,
+            "url": "https://jsonplaceholder.typicode.com/posts",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "payload": {
+                "title": "foo",
+                "body": "bar",
+                "userId": 1
+            },
+            "interval": 15
+        }
+  }
+}
