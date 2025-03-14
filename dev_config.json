@@ -3,10 +3,10 @@
   "use_token_manager": true,
   "max_runtime": 60, 
   "auth": {
-    "url": "https://chnr6dev01.ant.works:2004/api/AuthController/token",
+    "url": "xxxx",
     "credentials": {
-        "username": "adminantworks",
-        "password": "Password@123@"
+        "username": "xxx",
+        "password": "xxxx"
     }
   },
   "clients": {
